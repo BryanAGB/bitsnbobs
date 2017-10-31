@@ -8,14 +8,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myLabel: UILabel!
     @IBOutlet weak var myButton: UILabel!
-    @IBOutlet weak var myTextField: UITextView!
+    @IBOutlet weak var myBigLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pinchGesture = UIPinchGestureRecognizer(target: self, action:#selector(pinchText(sender:)))
-        myLabel.addGestureRecognizer(pinchGesture)
-        myButton.addGestureRecognizer(pinchGesture)
-        myTextField.addGestureRecognizer(pinchGesture)
+  
+        view.addGestureRecognizer(pinchGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,20 +23,20 @@ class ViewController: UIViewController {
     }
 
     @objc func pinchText(sender: UIPinchGestureRecognizer) {
-        var pointSize = myTextField.font?.pointSize
+        var pointSize = myBigLabel.font?.pointSize
         var pointCheck = Int(pointSize!)
-        if pointCheck <= 30 && pointCheck >= 20 {
+        if pointCheck <= 16 && pointCheck >= 12 {
         pointSize = ((sender.velocity > 0) ? 1 : -1) * 1 + pointSize!;
         }
-        else if pointCheck >= 30 {
+        else if pointCheck >= 16 {
             pointSize = ((sender.velocity > 0) ? 0 : -1) * 1 + pointSize!;
         }
-        else if pointCheck <= 20 {
+        else if pointCheck <= 12 {
             pointSize = ((sender.velocity > 0) ? 1 : 0) * 1 + pointSize!;
         }
-        myLabel.font = UIFont( name: "arial", size: (pointSize)!)
-        myButton.font = UIFont( name: "arial", size: (pointSize)!)
-        myTextField.font = UIFont( name: "arial", size: (pointSize)!)
+        myLabel.font = UIFont.boldSystemFont(ofSize: (pointSize)!)
+        myButton.font = UIFont.systemFont(ofSize: (pointSize)!)
+        myBigLabel.font = UIFont.systemFont(ofSize: (pointSize)!)
 
     }
     
