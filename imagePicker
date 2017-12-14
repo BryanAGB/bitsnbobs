@@ -1,3 +1,5 @@
+//Remember to add Privacy - Camera Useage Description (and Privacy - Photo Library Useage Description if required) to project info.plist
+
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -11,7 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = false //set to true if you want to edit images.
         imagePicker.sourceType = .camera
     }
 
@@ -21,7 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let userPickedImage = info[UIImagePickerControllerOriginalImage]
+        let userPickedImage = info[UIImagePickerControllerOriginalImage] //if editing is set to true replace UIImagePickerControllerOriginalImage with UIImagePickerControllerEditedImage
         imageViewPortal.image = userPickedImage as? UIImage
         imagePicker.dismiss(animated: true, completion: nil)
         
