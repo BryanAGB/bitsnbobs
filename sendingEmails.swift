@@ -17,8 +17,11 @@
         mailVC.setToRecipients(["name@email.com"])
         mailVC.setSubject("Subject goes here")
         let body = "Body of email goes here."
+    
+        mailVC.setMessageBody(body, isHTML: false)
         
-        composeVC.setMessageBody(body, isHTML: false)
+        mailVC.addAttachmentData(fileData as Data, mimeType: "text/csv", fileName: "yourfilename.csv") //add an attachment if required
+        
         self.present(composeVC, animated: true)
      }
     
